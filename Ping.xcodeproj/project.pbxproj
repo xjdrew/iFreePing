@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DEA29AC21723023E00037468 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEA29AC11723023E00037468 /* README.md */; };
+		DEA29AC9172308A400037468 /* IGPing.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA29AC5172308A400037468 /* IGPing.m */; };
+		DEA29ACA172308A400037468 /* IGPingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA29AC8172308A400037468 /* IGPingOperation.m */; };
 		DEA5C06E17219D8300875CC0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA5C06D17219D8300875CC0 /* UIKit.framework */; };
 		DEA5C07017219D8300875CC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA5C06F17219D8300875CC0 /* Foundation.framework */; };
 		DEA5C07217219D8300875CC0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA5C07117219D8300875CC0 /* CoreGraphics.framework */; };
@@ -18,12 +21,16 @@
 		DEA5C08417219D8300875CC0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA5C08317219D8300875CC0 /* Default-568h@2x.png */; };
 		DEA5C08717219D8300875CC0 /* IGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA5C08617219D8300875CC0 /* IGViewController.m */; };
 		DEA5C08A17219D8300875CC0 /* IGViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEA5C08817219D8300875CC0 /* IGViewController.xib */; };
-		DEA5C0921721A0F600875CC0 /* IGPing.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA5C0911721A0F600875CC0 /* IGPing.m */; };
 		DEA5C0951721B66700875CC0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA5C0941721B66700875CC0 /* CFNetwork.framework */; };
-		DEA5C0981721B76600875CC0 /* IGPingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA5C0971721B76600875CC0 /* IGPingOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DEA29AC11723023E00037468 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		DEA29AC4172308A400037468 /* IGPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGPing.h; sourceTree = "<group>"; };
+		DEA29AC5172308A400037468 /* IGPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGPing.m; sourceTree = "<group>"; };
+		DEA29AC6172308A400037468 /* IGPingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGPingHeader.h; sourceTree = "<group>"; };
+		DEA29AC7172308A400037468 /* IGPingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGPingOperation.h; sourceTree = "<group>"; };
+		DEA29AC8172308A400037468 /* IGPingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGPingOperation.m; sourceTree = "<group>"; };
 		DEA5C06A17219D8300875CC0 /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEA5C06D17219D8300875CC0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DEA5C06F17219D8300875CC0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,12 +47,7 @@
 		DEA5C08517219D8300875CC0 /* IGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGViewController.h; sourceTree = "<group>"; };
 		DEA5C08617219D8300875CC0 /* IGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IGViewController.m; sourceTree = "<group>"; };
 		DEA5C08917219D8300875CC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IGViewController.xib; sourceTree = "<group>"; };
-		DEA5C0901721A0F600875CC0 /* IGPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGPing.h; sourceTree = "<group>"; };
-		DEA5C0911721A0F600875CC0 /* IGPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGPing.m; sourceTree = "<group>"; };
-		DEA5C0931721A41300875CC0 /* IGPingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGPingHeader.h; sourceTree = "<group>"; };
 		DEA5C0941721B66700875CC0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		DEA5C0961721B76600875CC0 /* IGPingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGPingOperation.h; sourceTree = "<group>"; };
-		DEA5C0971721B76600875CC0 /* IGPingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGPingOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DEA29AC3172308A400037468 /* IGPing */ = {
+			isa = PBXGroup;
+			children = (
+				DEA29AC4172308A400037468 /* IGPing.h */,
+				DEA29AC5172308A400037468 /* IGPing.m */,
+				DEA29AC6172308A400037468 /* IGPingHeader.h */,
+				DEA29AC7172308A400037468 /* IGPingOperation.h */,
+				DEA29AC8172308A400037468 /* IGPingOperation.m */,
+			);
+			path = IGPing;
+			sourceTree = "<group>";
+		};
 		DEA5C06117219D8200875CC0 = {
 			isa = PBXGroup;
 			children = (
@@ -94,11 +108,7 @@
 		DEA5C07317219D8300875CC0 /* Ping */ = {
 			isa = PBXGroup;
 			children = (
-				DEA5C0961721B76600875CC0 /* IGPingOperation.h */,
-				DEA5C0971721B76600875CC0 /* IGPingOperation.m */,
-				DEA5C0931721A41300875CC0 /* IGPingHeader.h */,
-				DEA5C0901721A0F600875CC0 /* IGPing.h */,
-				DEA5C0911721A0F600875CC0 /* IGPing.m */,
+				DEA29AC3172308A400037468 /* IGPing */,
 				DEA5C07C17219D8300875CC0 /* IGAppDelegate.h */,
 				DEA5C07D17219D8300875CC0 /* IGAppDelegate.m */,
 				DEA5C08517219D8300875CC0 /* IGViewController.h */,
@@ -112,6 +122,7 @@
 		DEA5C07417219D8300875CC0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DEA29AC11723023E00037468 /* README.md */,
 				DEA5C07517219D8300875CC0 /* Ping-Info.plist */,
 				DEA5C07617219D8300875CC0 /* InfoPlist.strings */,
 				DEA5C07917219D8300875CC0 /* main.m */,
@@ -180,6 +191,7 @@
 				DEA5C08217219D8300875CC0 /* Default@2x.png in Resources */,
 				DEA5C08417219D8300875CC0 /* Default-568h@2x.png in Resources */,
 				DEA5C08A17219D8300875CC0 /* IGViewController.xib in Resources */,
+				DEA29AC21723023E00037468 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,8 +205,8 @@
 				DEA5C07A17219D8300875CC0 /* main.m in Sources */,
 				DEA5C07E17219D8300875CC0 /* IGAppDelegate.m in Sources */,
 				DEA5C08717219D8300875CC0 /* IGViewController.m in Sources */,
-				DEA5C0921721A0F600875CC0 /* IGPing.m in Sources */,
-				DEA5C0981721B76600875CC0 /* IGPingOperation.m in Sources */,
+				DEA29AC9172308A400037468 /* IGPing.m in Sources */,
+				DEA29ACA172308A400037468 /* IGPingOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
