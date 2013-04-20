@@ -1,0 +1,325 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DEA5C06E17219D8300875CC0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA5C06D17219D8300875CC0 /* UIKit.framework */; };
+		DEA5C07017219D8300875CC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA5C06F17219D8300875CC0 /* Foundation.framework */; };
+		DEA5C07217219D8300875CC0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA5C07117219D8300875CC0 /* CoreGraphics.framework */; };
+		DEA5C07817219D8300875CC0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEA5C07617219D8300875CC0 /* InfoPlist.strings */; };
+		DEA5C07A17219D8300875CC0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA5C07917219D8300875CC0 /* main.m */; };
+		DEA5C07E17219D8300875CC0 /* IGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA5C07D17219D8300875CC0 /* IGAppDelegate.m */; };
+		DEA5C08017219D8300875CC0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA5C07F17219D8300875CC0 /* Default.png */; };
+		DEA5C08217219D8300875CC0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA5C08117219D8300875CC0 /* Default@2x.png */; };
+		DEA5C08417219D8300875CC0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA5C08317219D8300875CC0 /* Default-568h@2x.png */; };
+		DEA5C08717219D8300875CC0 /* IGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA5C08617219D8300875CC0 /* IGViewController.m */; };
+		DEA5C08A17219D8300875CC0 /* IGViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEA5C08817219D8300875CC0 /* IGViewController.xib */; };
+		DEA5C0921721A0F600875CC0 /* IGPing.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA5C0911721A0F600875CC0 /* IGPing.m */; };
+		DEA5C0951721B66700875CC0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA5C0941721B66700875CC0 /* CFNetwork.framework */; };
+		DEA5C0981721B76600875CC0 /* IGPingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA5C0971721B76600875CC0 /* IGPingOperation.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DEA5C06A17219D8300875CC0 /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEA5C06D17219D8300875CC0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DEA5C06F17219D8300875CC0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DEA5C07117219D8300875CC0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DEA5C07517219D8300875CC0 /* Ping-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ping-Info.plist"; sourceTree = "<group>"; };
+		DEA5C07717219D8300875CC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DEA5C07917219D8300875CC0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DEA5C07B17219D8300875CC0 /* Ping-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ping-Prefix.pch"; sourceTree = "<group>"; };
+		DEA5C07C17219D8300875CC0 /* IGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGAppDelegate.h; sourceTree = "<group>"; };
+		DEA5C07D17219D8300875CC0 /* IGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IGAppDelegate.m; sourceTree = "<group>"; };
+		DEA5C07F17219D8300875CC0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		DEA5C08117219D8300875CC0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DEA5C08317219D8300875CC0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DEA5C08517219D8300875CC0 /* IGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGViewController.h; sourceTree = "<group>"; };
+		DEA5C08617219D8300875CC0 /* IGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IGViewController.m; sourceTree = "<group>"; };
+		DEA5C08917219D8300875CC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IGViewController.xib; sourceTree = "<group>"; };
+		DEA5C0901721A0F600875CC0 /* IGPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGPing.h; sourceTree = "<group>"; };
+		DEA5C0911721A0F600875CC0 /* IGPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGPing.m; sourceTree = "<group>"; };
+		DEA5C0931721A41300875CC0 /* IGPingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGPingHeader.h; sourceTree = "<group>"; };
+		DEA5C0941721B66700875CC0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		DEA5C0961721B76600875CC0 /* IGPingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGPingOperation.h; sourceTree = "<group>"; };
+		DEA5C0971721B76600875CC0 /* IGPingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGPingOperation.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DEA5C06717219D8300875CC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEA5C0951721B66700875CC0 /* CFNetwork.framework in Frameworks */,
+				DEA5C06E17219D8300875CC0 /* UIKit.framework in Frameworks */,
+				DEA5C07017219D8300875CC0 /* Foundation.framework in Frameworks */,
+				DEA5C07217219D8300875CC0 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DEA5C06117219D8200875CC0 = {
+			isa = PBXGroup;
+			children = (
+				DEA5C0941721B66700875CC0 /* CFNetwork.framework */,
+				DEA5C07317219D8300875CC0 /* Ping */,
+				DEA5C06C17219D8300875CC0 /* Frameworks */,
+				DEA5C06B17219D8300875CC0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DEA5C06B17219D8300875CC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DEA5C06A17219D8300875CC0 /* Ping.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DEA5C06C17219D8300875CC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DEA5C06D17219D8300875CC0 /* UIKit.framework */,
+				DEA5C06F17219D8300875CC0 /* Foundation.framework */,
+				DEA5C07117219D8300875CC0 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEA5C07317219D8300875CC0 /* Ping */ = {
+			isa = PBXGroup;
+			children = (
+				DEA5C0961721B76600875CC0 /* IGPingOperation.h */,
+				DEA5C0971721B76600875CC0 /* IGPingOperation.m */,
+				DEA5C0931721A41300875CC0 /* IGPingHeader.h */,
+				DEA5C0901721A0F600875CC0 /* IGPing.h */,
+				DEA5C0911721A0F600875CC0 /* IGPing.m */,
+				DEA5C07C17219D8300875CC0 /* IGAppDelegate.h */,
+				DEA5C07D17219D8300875CC0 /* IGAppDelegate.m */,
+				DEA5C08517219D8300875CC0 /* IGViewController.h */,
+				DEA5C08617219D8300875CC0 /* IGViewController.m */,
+				DEA5C08817219D8300875CC0 /* IGViewController.xib */,
+				DEA5C07417219D8300875CC0 /* Supporting Files */,
+			);
+			path = Ping;
+			sourceTree = "<group>";
+		};
+		DEA5C07417219D8300875CC0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DEA5C07517219D8300875CC0 /* Ping-Info.plist */,
+				DEA5C07617219D8300875CC0 /* InfoPlist.strings */,
+				DEA5C07917219D8300875CC0 /* main.m */,
+				DEA5C07B17219D8300875CC0 /* Ping-Prefix.pch */,
+				DEA5C07F17219D8300875CC0 /* Default.png */,
+				DEA5C08117219D8300875CC0 /* Default@2x.png */,
+				DEA5C08317219D8300875CC0 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DEA5C06917219D8300875CC0 /* Ping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEA5C08D17219D8300875CC0 /* Build configuration list for PBXNativeTarget "Ping" */;
+			buildPhases = (
+				DEA5C06617219D8300875CC0 /* Sources */,
+				DEA5C06717219D8300875CC0 /* Frameworks */,
+				DEA5C06817219D8300875CC0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ping;
+			productName = Ping;
+			productReference = DEA5C06A17219D8300875CC0 /* Ping.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DEA5C06217219D8200875CC0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = IG;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Igniter;
+			};
+			buildConfigurationList = DEA5C06517219D8200875CC0 /* Build configuration list for PBXProject "Ping" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DEA5C06117219D8200875CC0;
+			productRefGroup = DEA5C06B17219D8300875CC0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DEA5C06917219D8300875CC0 /* Ping */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DEA5C06817219D8300875CC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEA5C07817219D8300875CC0 /* InfoPlist.strings in Resources */,
+				DEA5C08017219D8300875CC0 /* Default.png in Resources */,
+				DEA5C08217219D8300875CC0 /* Default@2x.png in Resources */,
+				DEA5C08417219D8300875CC0 /* Default-568h@2x.png in Resources */,
+				DEA5C08A17219D8300875CC0 /* IGViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DEA5C06617219D8300875CC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEA5C07A17219D8300875CC0 /* main.m in Sources */,
+				DEA5C07E17219D8300875CC0 /* IGAppDelegate.m in Sources */,
+				DEA5C08717219D8300875CC0 /* IGViewController.m in Sources */,
+				DEA5C0921721A0F600875CC0 /* IGPing.m in Sources */,
+				DEA5C0981721B76600875CC0 /* IGPingOperation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DEA5C07617219D8300875CC0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEA5C07717219D8300875CC0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DEA5C08817219D8300875CC0 /* IGViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEA5C08917219D8300875CC0 /* en */,
+			);
+			name = IGViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DEA5C08B17219D8300875CC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DEA5C08C17219D8300875CC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DEA5C08E17219D8300875CC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ping/Ping-Prefix.pch";
+				INFOPLIST_FILE = "Ping/Ping-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DEA5C08F17219D8300875CC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ping/Ping-Prefix.pch";
+				INFOPLIST_FILE = "Ping/Ping-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DEA5C06517219D8200875CC0 /* Build configuration list for PBXProject "Ping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEA5C08B17219D8300875CC0 /* Debug */,
+				DEA5C08C17219D8300875CC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEA5C08D17219D8300875CC0 /* Build configuration list for PBXNativeTarget "Ping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEA5C08E17219D8300875CC0 /* Debug */,
+				DEA5C08F17219D8300875CC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DEA5C06217219D8200875CC0 /* Project object */;
+}

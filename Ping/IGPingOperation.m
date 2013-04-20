@@ -121,7 +121,7 @@
     
     if (self->_receivedTimes) {
         self->_avgRTT = totalRtt / self->_receivedTimes;
-        self->_mdevRTT = sqrt(totalRtt2 - pow(self->_avgRTT/self->_receivedTimes,2));
+        self->_mdevRTT = sqrt(totalRtt2/self->_receivedTimes - pow(self->_avgRTT,2));
     }
 }
 
