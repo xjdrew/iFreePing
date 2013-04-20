@@ -2,7 +2,7 @@ iFreePing
 =========
 IGPing is a full featured ios ping library. iFreePing is based on IGPing.
 
-![iFreePing Demo Screen](http://raw.github.com/xjdrew/iFreePing/master/doc/iFreePing-screen-2013-4-21.png)
+![iFreePing Demo Screen](https://raw.github.com/xjdrew/iFreePing/master/doc/iFreePing-screen-2013-4-21.png)
 
 Overview
 --------------
