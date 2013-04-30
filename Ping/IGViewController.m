@@ -40,30 +40,32 @@
     if (self.pingOperation) {
         [self.pingOperation stop];
     } else {
-        self.pingOperation = [IGPingOperation makePingOperation:self.hostField.text delegate:self];
+        NSArray *hostNameArray = @[self.hostField.text, @"www.google.com", @"www.baidu.com", @"www.yahoo.com", @"218.19.123.4", @"www.myip.cn"];
+        self.pingOperation = [IGPingOperation makePingOperation:hostNameArray delegate:self];
         [self.pingOperation start];
     }
 }
 
 #pragma IGOperationDelegate protocal
 -(void) operation:(IGPingOperation *)operation start:(IGPingStartResult *) result {
+    [self.pingButton setHighlighted:YES];
     if (result.error) {
         NSLog(@"startup error: %@", result.error);
-        self.pingOperation = nil;
-    } else {
-        [self.pingButton setHighlighted:YES];
     }
     [self log:[result description]];
 }
 
 -(void) operation:(IGPingOperation *)operation pingResult:(IGPingResult *)result {
-    [self log:[result description]];
+    //[self log:[result description]];
 }
 
--(void) operation:(IGPingOperation *)operation stop:(IGPingStopResult *)result {
-    [self log:@"-------- ping statistics --------"];
+-(void) operation:(IGPingOperation *)operation finish:(IGPingStopResult *)result {
+    [self log:[NSString stringWithFormat:@"-------- ping %@ statistics --------", result.hostName ]];
     [self log:[result description]];
     [self log:@"-------------- end --------------"];
+}
+
+-(void) operationStop:(IGPingOperation *)operation {
     [self.pingButton setHighlighted:NO];
     self.pingOperation = nil;
 }

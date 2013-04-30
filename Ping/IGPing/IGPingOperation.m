@@ -84,11 +84,12 @@
 @end
 
 @implementation IGPingStopResult
--(id) initWithCapacity:(NSInteger) capacity {
+-(id) init:(NSString*) hostName capacity:(NSInteger) capacity {
     self = [super init];
     if (self) {
-        self.capacity = capacity;
-        self.resultArray = [NSMutableArray arrayWithCapacity:capacity];
+        _hostName = hostName;
+        _capacity = capacity;
+        _resultArray = [NSMutableArray arrayWithCapacity:capacity];
     }
     return self;
 }
@@ -245,34 +246,33 @@
 @end
 
 @interface IGPingOperation()
-@property (strong, nonatomic) NSString  *hostName;
-@property (strong, nonatomic) NSTimer   *timer;
+@property (strong, atomic) NSArray *hostNameArray;
+@property (strong, atomic) NSTimer *timer;
 
-@property (strong, nonatomic) IGPing    *pingObj;
+@property (strong, atomic) NSMutableDictionary *pingObjDict;
+@property (strong, atomic) NSMutableDictionary *pingSummaryDict;
+@property (strong, atomic) NSMutableDictionary *resultDict;
 
-@property (weak, nonatomic)   id<IGPingOperationDelegate> delegate;
-
-@property(strong, atomic) NSMutableDictionary *pingSummaryDict;
-@property(strong, atomic) IGPingStopResult    *stopResult;
+@property (weak, atomic)   id<IGPingOperationDelegate> delegate;
 @end
 
 @implementation IGPingOperation
 
 #pragma mark - create
 
-+ (IGPingOperation*) makePingOperation:(NSString *)hostName delegate:(id<IGPingOperationDelegate>) delegate {
-    IGPingOperation *obj = [[IGPingOperation alloc] initWithAddress:hostName];
++ (IGPingOperation*) makePingOperation:(NSArray *)hostNameArray delegate:(id<IGPingOperationDelegate>) delegate {
+    IGPingOperation *obj = [[IGPingOperation alloc] initWithAddress:hostNameArray];
     obj.delegate = delegate;
     return obj;
 }
 
 #pragma mark - Init/dealloc
 
-- (id)initWithAddress:(NSString*)hostName {
+- (id)initWithAddress:(NSArray*)hostNameArray {
 	if (self = [self init]) {
-        self.hostName           = hostName;
-        self.repeatedTimes      = 4;
-        self.timeout            = 1;
+        _hostNameArray      = hostNameArray;
+        _repeatedTimes      = 4;
+        _timeout            = 1;
     }
 	return self;
 }
@@ -280,42 +280,102 @@
 #pragma mark - start and stop
 
 - (void)start {
-    if (self.pingObj == nil) {
-        self.pingObj            = [IGPing pingWithHostName:self.hostName];
-		self.pingObj.delegate   = self;
-        self.pingObj.payloadLen = 56;
-        [self.pingObj start];
+    if (_pingObjDict == nil) {
+        _pingObjDict = [NSMutableDictionary dictionaryWithCapacity:_hostNameArray.count];
+        _resultDict  = [NSMutableDictionary dictionaryWithCapacity:_hostNameArray.count];
+        _pingSummaryDict = [NSMutableDictionary dictionaryWithCapacity:_hostNameArray.count];
+        
+        for (NSString* hostName in _hostNameArray) {
+            IGPing *pingObj = [IGPing pingWithHostName:hostName];
+            pingObj.delegate   = self;
+            pingObj.payloadLen = 56;
+            _pingObjDict[hostName] = pingObj;
+            _resultDict[hostName] = [[IGPingStopResult alloc] init:hostName capacity:_repeatedTimes];
+            _pingSummaryDict[hostName] = [NSMutableDictionary dictionary];
+        }
+        
+        for (NSString* hostName in _pingObjDict) {
+            IGPing *pingObj = _pingObjDict[hostName];
+            if (pingObj) {
+                [pingObj start];
+            }
+        }
     }
 }
 
-- (void)stop {
-    if (self.pingObj) {
-        [self.pingObj stop];
-        self.pingObj = nil;
-    }
-    
+- (void)stop {    
     if (self.timer) {
         [self.timer invalidate];
         self.timer = nil;
     }
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(operation:stop:)]) {
-        [self.stopResult calcResult];
+    if (_resultDict) {
+        for (NSString *hostName in [_resultDict allKeys]) {
+            [self finish:hostName];
+        }
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(operationStop:)]) {
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            [self.delegate operation:self stop:self.stopResult];
-            self.stopResult = nil;
+            [self.delegate operationStop:self];
         });
+    }
+    _resultDict = nil;
+    _pingSummaryDict = nil;
+    _pingObjDict = nil;
+}
+
+-(void) finish:(NSString*) hostName {
+    IGPing *pingObj  = _pingObjDict[hostName];
+    if (!pingObj) {
+        return;
+    }
+    
+    [pingObj stop];
+    [_pingObjDict removeObjectForKey:hostName];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(operation:finish:)]) {
+        IGPingStopResult *result = _resultDict[hostName];
+        if (result) {
+            [result calcResult];
+            [_resultDict removeObjectForKey:hostName];
+            [_pingSummaryDict removeObjectForKey:hostName];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [self.delegate operation:self finish:result];
+            });
+        }
+    }
+    
+    if (_resultDict.count == 0) {
+        [self stop];
+    }
+}
+
+- (void) finish:(NSString*)hostName procedure:(IGPingProcedure*) procedure {
+    IGPingResult *result = [procedure getPingResult];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(operation:pingResult:)]) {
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [self.delegate operation:self pingResult:result];
+        });
+    }
+    IGPingStopResult *finiResult = _resultDict[hostName];
+    [finiResult addResult:result];
+    if ([finiResult isFull]) {
+        [self finish:hostName];
     }
 }
 
 #pragma mark - check ping timeout
 
 - (void) timerFireMethod:(NSTimer*)theTimer {
-    for (NSNumber* key in [self.pingSummaryDict allKeys]) {
-        IGPingProcedure *obj = self.pingSummaryDict[key];
-        if (obj && [obj isTimeout] == YES) {
-            [self.pingSummaryDict removeObjectForKey:key];
-            [self finishedProcedure:obj];
+    for (NSString* hostName in [_pingSummaryDict allKeys]) {
+        NSMutableDictionary *dict = _pingSummaryDict[hostName];
+        for (NSNumber *key in [dict allKeys]) {
+            IGPingProcedure *obj = dict[key];
+            if (obj && [obj isTimeout] == YES) {
+                [dict removeObjectForKey:key];
+                [self finish:hostName procedure:obj];
+            }
         }
     }
     // NSLog(@"in timer FileMethod");
@@ -326,25 +386,25 @@
 - (void)ping:(IGPing *)pinger onStartup:(NSError *)error {
     IGPingStartResult *result;
     if (error) {
-        result = [IGPingStartResult makePingStartResult:self.hostName error:error];
+        result = [IGPingStartResult makePingStartResult:pinger.hostName error:error];
         NSLog(@"ping: %@", error);
     } else {
-        self.stopResult      = [[IGPingStopResult alloc] initWithCapacity:self.repeatedTimes];
-        self.pingSummaryDict = [NSMutableDictionary dictionary];
-        
-        __weak IGPing* pingObj = self.pingObj;
+        __weak IGPing* pingObj = pinger;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
             IGPing* strongPingObj = pingObj;
             for (NSInteger i=0; i<self.repeatedTimes; ++i) {
                 if (strongPingObj) {
                     [strongPingObj sendPacket];
-                    [NSThread sleepForTimeInterval:self.timeout];
+                    [NSThread sleepForTimeInterval:self.timeout/2];
                 }
             }
         });
         
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:self.timeout/4 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
-        result = [IGPingStartResult makePingStartResult:self.hostName ip:[pinger getIpAddr] payload:pinger.payloadLen];
+        if (!_timer) {
+            _timer = [NSTimer scheduledTimerWithTimeInterval:self.timeout/4 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
+        }
+        
+        result = [IGPingStartResult makePingStartResult:pinger.hostName ip:[pinger getIpAddr] payload:pinger.payloadLen];
     }
     
     // call delegate
@@ -353,19 +413,26 @@
             [self.delegate operation:self start:result];
         });
     }
+    
+    // if error, finish
+    if (error) {
+        [self finish:pinger.hostName];
+    }
 }
 
 - (void)ping:(IGPing *)pinger didFailWithError:(NSError *)error {
     NSLog(@"ping: %@", error);
-    [self stop];
+    [self finish:pinger.hostName];
 }
 
 -(void)ping:(IGPing *)pinger didSendPacket:(uint16_t)sequence packet:(NSData *)packet {
-    assert(sequence < self.repeatedTimes);
-    NSNumber *key = [NSNumber numberWithInt:sequence];
-    assert(self.pingSummaryDict[key] == nil);
-    IGPingProcedure *obj = [IGPingProcedure makePingProcedure:[pinger getIpAddr] sequence:sequence timeout:self.timeout];
-    self.pingSummaryDict[key] = obj;
+    assert(sequence < _repeatedTimes);
+    NSMutableDictionary *dict = _pingSummaryDict[pinger.hostName];
+    if (dict) {
+        NSNumber *key = [NSNumber numberWithInt:sequence];
+        assert(dict[key] == nil);
+        dict[key] = [IGPingProcedure makePingProcedure:[pinger getIpAddr] sequence:sequence timeout:self.timeout];
+    }
 }
 
 - (void)ping:(IGPing *)pinger didFailToSendPacket:(uint16_t)sequence packet:(NSData *)packet error:(NSError *)error {
@@ -375,25 +442,15 @@
 }
 
 - (void)ping:(IGPing *)pinger didReceivePacket:(uint16_t)sequence packet:(NSData *)packet {
-    NSNumber *key = [NSNumber numberWithInt:sequence];
-    IGPingProcedure *obj = self.pingSummaryDict[key];
-    if (obj && [obj isTimeout] == NO) {
-        [self.pingSummaryDict removeObjectForKey:key];
-        obj.receivePacket = packet;
-        [self finishedProcedure:obj];
-    }
-}
-
-- (void) finishedProcedure:(IGPingProcedure*) procedure {
-    IGPingResult *result = [procedure getPingResult];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(operation:pingResult:)]) {
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            [self.delegate operation:self pingResult:result];
-        });
-    }
-    [self.stopResult addResult:result];
-    if ([self.stopResult isFull]) {
-        [self stop];
+    NSMutableDictionary *dict = _pingSummaryDict[pinger.hostName];
+    if (dict) {
+        NSNumber *key = [NSNumber numberWithInt:sequence];
+        IGPingProcedure *obj = dict[key];
+        if (obj && [obj isTimeout] == NO) {
+            [dict removeObjectForKey:key];
+            obj.receivePacket = packet;
+            [self finish:pinger.hostName procedure:obj];
+        }
     }
 }
 

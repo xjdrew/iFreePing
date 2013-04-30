@@ -28,6 +28,7 @@
 
 //
 @interface IGPingStopResult : NSObject
+@property (readonly, nonatomic) NSString *hostName;
 @property (readonly, nonatomic) NSInteger sendTimes;
 @property (readonly, nonatomic) NSInteger receivedTimes;
 @property (readonly, nonatomic) NSTimeInterval minRTT;
@@ -42,7 +43,7 @@
 @property (assign, nonatomic) NSInteger      repeatedTimes;
 @property (assign, nonatomic) NSTimeInterval timeout;
 
-+ (IGPingOperation*) makePingOperation:(NSString *)hostName delegate:(id<IGPingOperationDelegate>) delegate;
++ (IGPingOperation*) makePingOperation:(NSArray *)hostNameArray delegate:(id<IGPingOperationDelegate>) delegate;
 - (void)start;
 - (void)stop;
 @end
@@ -56,6 +57,9 @@
 // call one time for every ping
 - (void) operation:(IGPingOperation*)operation pingResult:(IGPingResult*) result;
 
-// call after stop or finished all pings
-- (void) operation:(IGPingOperation*)operation stop:(IGPingStopResult*) result;
+// call while finishing ping an ip
+- (void) operation:(IGPingOperation*)operation finish:(IGPingStopResult*) result;
+
+// call when all ip finished
+-(void) operationStop:(IGPingOperation *)operation;
 @end
